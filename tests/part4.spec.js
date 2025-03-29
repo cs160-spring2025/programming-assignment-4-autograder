@@ -27,7 +27,8 @@ test(
 
     const responsePromise = page.waitForResponse(/noggin/);
     await submitButton.click();
-    await responsePromise;
+    const rsp = await responsePromise;
+    await rsp.finished();
     await page.waitForTimeout(500);
 
     expect(page.locator("#game-name")).toHaveValue("Blokus");

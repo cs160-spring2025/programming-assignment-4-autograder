@@ -23,7 +23,12 @@ test(
     const responsePromise = page.waitForResponse(/noggin/);
 
     await suggestButton.click();
-    await responsePromise;
+    const rsp = await responsePromise;
+    // await rsp.finished(); // this one doesn't need to finish.. we're just checking a URL
+
+    const responsePromiseImage = page.waitForResponse(/rgdata\.net/);
+    await (await responsePromiseImage).finished();
+
     await page.waitForTimeout(500);
 
     const listItems = await page.locator("#list > div").all();

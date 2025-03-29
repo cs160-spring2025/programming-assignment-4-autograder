@@ -25,7 +25,8 @@ test(
 
     const responsePromise = page.waitForResponse(/noggin/);
     await suggestButton.click();
-    await responsePromise;
+    const rsp = await responsePromise;
+    await rsp.finished();
     await page.waitForTimeout(500);
 
     // this could look off if they did the xc task with a second noggin

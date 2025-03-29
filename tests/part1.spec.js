@@ -25,8 +25,8 @@ test(
     const responsePromise = page.waitForResponse(/noggin/);
 
     await suggestButton.click();
-
-    await responsePromise;
+    const rsp = await responsePromise;
+    await rsp.finished();
     await page.waitForTimeout(500);
 
     await expect(subjectInput).not.toBeEmpty();
