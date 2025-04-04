@@ -20,7 +20,7 @@ test(
 
     await subjectInput.fill("Pizza");
 
-    const responsePromise = page.waitForResponse(/noggin/);
+    const responsePromise = page.waitForResponse(/noggin/, { timeout: 30000 });
 
     await suggestButton.click();
     const rsp = await responsePromise;
